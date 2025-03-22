@@ -138,31 +138,21 @@ title: Home
   left: 0;
   width: 100vw;
   height: 100vh;
-  box-shadow:
-    inset 0 0 40px rgba(0, 255, 0, 0.15),
-    inset 0 0 80px rgba(0, 255, 0, 0.05),
-    0 0 15px rgba(0, 255, 0, 0.1);
-  border: 12px solid rgba(0, 255, 0, 0.1);
+  background: radial-gradient(ellipse at center, rgba(0,255,0,0.02) 0%, transparent 80%);
+  box-shadow: inset 0 0 80px rgba(0, 255, 0, 0.1), 0 0 25px rgba(0, 255, 0, 0.03);
   z-index: 2;
   pointer-events: none;
   border-radius: 100px / 60px;
-  animation: frameScanlines 3s infinite;
-  background-image: repeating-linear-gradient(
-    to bottom,
-    rgba(0, 255, 0, 0.015) 0px,
-    rgba(0, 255, 0, 0.015) 1px,
-    transparent 1px,
-    transparent 4px
-  );
-  background-size: 100% 4px;
-  background-repeat: repeat;
+  animation: frameGlow 4s ease-in-out infinite alternate;
 }
 
 .flicker {
   animation: flickerAnimation 3s infinite;
 }
-@keyframes frameScanlines {
-  0% { background-position-y: 0; }
+@keyframes frameGlow {
+  0% { box-shadow: inset 0 0 40px rgba(0, 255, 0, 0.05), 0 0 10px rgba(0, 255, 0, 0.02); }
+  100% { box-shadow: inset 0 0 80px rgba(0, 255, 0, 0.15), 0 0 25px rgba(0, 255, 0, 0.05); }
+}
   100% { background-position-y: 100%; }
 }
 .status-bar {
