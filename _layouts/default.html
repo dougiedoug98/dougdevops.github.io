@@ -97,22 +97,37 @@ title: Home
     }
 
     body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 1;
-      pointer-events: none;
-      border: 3px solid #00ff00;
-      box-shadow: inset 0 0 10px #00ff00, 0 0 15px #00ff00;
-      opacity: 0.1;
-      animation: pipboyGlow 2s ease-in-out infinite alternate;
-    }
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  pointer-events: none;
+  border-radius: 25px;
+  border: 6px solid rgba(0, 255, 0, 0.15);
+  box-shadow: inset 0 0 20px #00ff00, 0 0 20px #00ff00;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 255, 0, 0.03) 0px,
+    rgba(0, 255, 0, 0.03) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+  background-size: 100% 4px;
+  animation: scanlinesOverlay 2.5s linear infinite;
+}
 
     @keyframes pipboyGlow {
-      0% { box-shadow: inset 0 0 6px #00ff00, 0 0 10px #00ff00; }
+  0% { box-shadow: inset 0 0 6px #00ff00, 0 0 10px #00ff00; }
+  100% { box-shadow: inset 0 0 12px #00ff00, 0 0 25px #00ff00; }
+}
+
+@keyframes scanlinesOverlay {
+  0% { background-position-y: 0; }
+  100% { background-position-y: 100%; }
+}
       100% { box-shadow: inset 0 0 12px #00ff00, 0 0 25px #00ff00; }
     }
 
