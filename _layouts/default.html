@@ -105,13 +105,23 @@ title: Home
   background: url('https://media.giphy.com/media/oEI9uBYSzLpBK/giphy.gif') center center / cover no-repeat;
   z-index: 1;
   pointer-events: none;
-  opacity: 0.08;
+  opacity: 0.03;
   mix-blend-mode: screen;
-  animation: screenFlicker 0.1s infinite;
+  animation: screenFlicker 0.1s infinite, glitchFlash 5s infinite;
 }
 
   @keyframes screenFlicker {
   0% { opacity: 0.1; }
+  25% { opacity: 0.2; }
+  50% { opacity: 0.05; }
+  75% { opacity: 0.2; }
+  100% { opacity: 0.1; }
+}
+
+@keyframes glitchFlash {
+  0%, 98%, 100% { filter: none; }
+  99% { filter: brightness(2) contrast(2) saturate(3); opacity: 0.2; }
+}
   25% { opacity: 0.2; }
   50% { opacity: 0.05; }
   75% { opacity: 0.2; }
