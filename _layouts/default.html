@@ -95,7 +95,24 @@ title: Home
       75% { opacity: 0.85; }
       90% { opacity: 0.3; }
     }
-  </style>
+    body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(rgba(255,255,255,0.03), rgba(0,0,0,0.3)), repeating-linear-gradient(0deg, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 2px);
+    z-index: 1;
+    pointer-events: none;
+    animation: screenFlicker 0.15s infinite;
+  }
+
+  @keyframes screenFlicker {
+    0%, 100% { opacity: 0.98; }
+    50% { opacity: 1; }
+  }
+</style>
 </head>
 <body>
   <div id="terminal-stream"></div>
@@ -116,7 +133,7 @@ title: Home
 
     <div class="content">
       <h1>Doug DevOps</h1>
-      <h2>Network/Systems Administrator & Cybersecurity Enthusiast</h2>
+      <h2>Systems & Cybersecurity Engineer</h2>
       <p>Welcome to my portfolio and resume hub.</p>
       <p>Explore my <a href="/projects">projects</a>, <a href="/resume">resume</a>, and learn more <a href="/about">about me</a>.</p>
     </div>
