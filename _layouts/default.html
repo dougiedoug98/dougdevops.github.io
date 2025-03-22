@@ -96,20 +96,34 @@ title: Home
       90% { opacity: 0.3; }
     }
     body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: radial-gradient(rgba(255,255,255,0.03), rgba(0,0,0,0.3)), repeating-linear-gradient(0deg, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 1px, transparent 1px, transparent 2px);
-    z-index: 1;
-    pointer-events: none;
-    animation: screenFlicker 0.15s infinite;
-  }
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.03) 0px,
+    rgba(255, 255, 255, 0.03) 1px,
+    transparent 1px,
+    transparent 2px
+  ),
+  radial-gradient(circle at center, rgba(255, 255, 255, 0.025), rgba(0, 0, 0, 0.3));
+  background-blend-mode: screen;
+  z-index: 1;
+  pointer-events: none;
+  animation: screenFlicker 0.12s infinite alternate;
+  opacity: 0.15;
+}
 
   @keyframes screenFlicker {
-    0%, 100% { opacity: 0.98; }
+  0% { opacity: 0.1; }
+  25% { opacity: 0.2; }
+  50% { opacity: 0.05; }
+  75% { opacity: 0.2; }
+  100% { opacity: 0.1; }
+}
     50% { opacity: 1; }
   }
 </style>
