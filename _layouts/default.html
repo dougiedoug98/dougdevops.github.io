@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ site.title }} - {{ page.title }}</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: black;
+      color: #00ff00;
+      font-family: 'Courier New', Courier, monospace;
+      overflow-x: hidden;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      padding: 1rem;
+      text-align: center;
+      z-index: 11;
+    }
+
+    nav a {
+      margin: 0 1rem;
+      color: #00ff00;
+      text-decoration: none;
+    }
+
+    .content {
+      position: relative;
+      z-index: 10;
+      padding: 6rem 2rem 2rem 2rem;
+      background: rgba(0, 0, 0, 0.75);
+      max-width: 800px;
+      margin: 5rem auto;
+      border-radius: 10px;
+      box-shadow: 0 0 15px #00ff00;
+    }
+
+    h1, h2, p, a {
+      color: #00ff00;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="matrix"></canvas>
+
+  <nav>
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+    <a href="/projects">Projects</a>
+    <a href="/resume">Resume</a>
+    <a href="/contact">Contact</a>
+  </nav>
+
+  <div class="content">
+    <h1>Doug DevOps</h1>
+    <h2>Systems & Cybersecurity Engineer</h2>
+    <p>Welcome to my portfolio and resume hub.</p>
+    <p>Explore my <a href="/projects">projects</a>, <a href="/resume">resume</a>, and learn more <a href="/about">about me</a>.</p>
+  </div>
+
+  <script>
+    const canvas = document.getElementById("matrix");
+    const ctx = canvas.getContext("2d");
+
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+
+    const letters = Array(256).join("1").split("");
+
+    let drops = [];
+    for (let i = 0; i < canvas.width / 10; i++) {
+      drops[i] = 1;
+    }
+
+    function draw() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = "#0F0";
+      ctx.font = "12pt monospace";
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = String.fromCharCode(33 + Math.random() * 94);
+        ctx.fillText(text, i * 10, drops[i] * 15);
+
+        if (drops[i] * 15 > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+
+    setInterval(draw, 33);
+
+    window.addEventListener("resize", () => {
+      canvas.height = window.innerHeight;
+      canvas.width = window.innerWidth;
+    });
+  </script>
+</body>
+</html>
