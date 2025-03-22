@@ -84,6 +84,17 @@ title: Home
     nav, .content {
       z-index: 5;
     }
+
+    .flicker {
+      animation: flickerAnimation 1s infinite;
+    }
+
+    @keyframes flickerAnimation {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+      75% { opacity: 0.85; }
+      90% { opacity: 0.3; }
+    }
   </style>
 </head>
 <body>
@@ -105,7 +116,7 @@ title: Home
 
     <div class="content">
       <h1>Doug DevOps</h1>
-      <h2>Systems & Cybersecurity Engineer</h2>
+      <h2>Network/Systems Administrator & Cybersecurity Enthusiast</h2>
       <p>Welcome to my portfolio and resume hub.</p>
       <p>Explore my <a href="/projects">projects</a>, <a href="/resume">resume</a>, and learn more <a href="/about">about me</a>.</p>
     </div>
@@ -114,35 +125,60 @@ title: Home
   <script>
     const terminalEl = document.getElementById("terminal-stream");
     const logLines = [
-      "[INFO] Connecting to remote host...",
-      "[OK] SSH session established with 10.0.0.14",
-      "[INFO] Fetching latest container stats...",
-      "[INFO] Docker container zabbix_agent_01: running",
-      "[INFO] Git repo cloned: /infra/ansible/playbooks",
-      "[RUN] playbook: deploy_patch.yaml",
-      "[WARN] Service nginx not responding, attempting restart...",
-      "[OK] nginx restarted successfully",
-      "[INFO] Monitoring agent heartbeat received",
-      "[LOG] Syslog: sudo apt update && sudo apt upgrade",
-      "[INFO] Port scan initiated: nmap -sV 192.168.1.0/24",
-      "[OK] Jenkins job completed: nightly-reboot"
-    ];
+  "[INFO] Connecting to remote host...",
+  "[OK] SSH session established with 10.0.0.14",
+  "[INFO] Fetching latest container stats...",
+  "[INFO] Docker container zabbix_agent_01: running",
+  "[INFO] Git repo cloned: /infra/ansible/playbooks",
+  "[RUN] playbook: deploy_patch.yaml",
+  "[WARN] Service nginx not responding, attempting restart...",
+  "[OK] nginx restarted successfully",
+  "[INFO] Monitoring agent heartbeat received",
+  "[LOG] Syslog: sudo apt update && sudo apt upgrade",
+  "[INFO] Port scan initiated: nmap -sV 192.168.1.0/24",
+  "[OK] Jenkins job completed: nightly-reboot",
+  "[ERROR] Failed to connect to LDAP server: timeout after 10s",
+  "[ERROR] Permissions denied writing to /etc/shadow",
+  "[RUN] Starting kubernetes deployment sequence",
+  "[RUN] playbook: rotate_keys.yml",
+  "[INFO] Network interface eth0 reset complete",
+  "[OK] Cron job executed: backup_config.sh",
+  "[LOG] Wazuh alert received: unauthorized access attempt",
+  "[WARN] High memory usage detected on node-01"
+];
 
-    let stream = "";
     function pushLogLine() {
-  const line = logLines[Math.floor(Math.random() * logLines.length)];
-  const div = document.createElement("div");
-  div.textContent = line;
-  div.style.opacity = 1;
-  div.style.transition = "opacity 1s ease-out";
-  terminalEl.appendChild(div);
-  setTimeout(() => {
-    div.style.opacity = 0;
-    setTimeout(() => {
-      terminalEl.removeChild(div);
-    }, 1000);
-  }, 5000); // disappear after 5 seconds
-}
+      const line = logLines[Math.floor(Math.random() * logLines.length)];
+      const div = document.createElement("div");
+      div.textContent = line;
+      if (line.includes('[WARN]')) div.classList.add("flicker");
+      else if (line.includes('[OK]')) div.style.color = "#00ff88";
+      else if (line.includes('[INFO]')) div.style.color = "#00ccff";
+      else if (line.includes('[RUN]')) {
+        div.style.color = "#ffaa00";
+        div.style.fontStyle = "italic";
+      } else if (line.includes('[LOG]')) div.style.color = "#ff00ff";
+      else if (line.includes('[ERROR]')) {
+        div.style.color = "#ff3333";
+        div.classList.add("flicker");
+        div.style.fontWeight = "bold";
+      }
+      else if (line.includes('[OK]')) div.style.color = "#00ff88";
+      else if (line.includes('[INFO]')) div.style.color = "#00ccff";
+      else if (line.includes('[RUN]')) div.style.color = "#ffaa00";
+      else if (line.includes('[LOG]')) div.style.color = "#ff00ff";
+      if (line.includes('[WARN]')) div.classList.add("flicker");
+      div.style.opacity = 1;
+      div.style.transition = "opacity 1s ease-out";
+      terminalEl.appendChild(div);
+      setTimeout(() => {
+        div.style.opacity = 0;
+        setTimeout(() => {
+          terminalEl.removeChild(div);
+        }, 1000);
+      }, 10000);
+    }
+
     setInterval(pushLogLine, 500);
 
     const introText = "Establishing secure terminal session...";
@@ -158,7 +194,6 @@ title: Home
         setTimeout(typeIntro, typeSpeed);
       } else {
         enterBtn.style.opacity = 1;
-        // setTimeout(() => enterSite(), 8000); // disabled auto-enter // auto-enter after 8 seconds
       }
     }
 
