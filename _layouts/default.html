@@ -56,6 +56,7 @@ title: Home
       font-size: 2rem;
       margin-bottom: 2rem;
       color: #00ff00;
+      min-height: 2rem;
     }
 
     .enter-btn {
@@ -67,6 +68,8 @@ title: Home
       border-radius: 5px;
       cursor: pointer;
       transition: background 0.3s, color 0.3s;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
     }
 
     .enter-btn:hover {
@@ -87,8 +90,8 @@ title: Home
   <div id="terminal-stream"></div>
 
   <div class="intro-screen" id="intro">
-    <h1>Establishing secure terminal session...</h1>
-    <button class="enter-btn" onclick="enterSite()">Enter Doug's Domain</button>
+    <h1 id="intro-text"></h1>
+    <button class="enter-btn" id="enterBtn" onclick="enterSite()">Enter Doug's Domain</button>
   </div>
 
   <div class="site-content" id="mainContent">
@@ -135,10 +138,29 @@ title: Home
     }
     setInterval(pushLogLine, 500);
 
+    const introText = "Establishing secure terminal session...";
+    let i = 0;
+    const typeSpeed = 50;
+    const introTextEl = document.getElementById("intro-text");
+    const enterBtn = document.getElementById("enterBtn");
+
+    function typeIntro() {
+      if (i < introText.length) {
+        introTextEl.innerHTML += introText.charAt(i);
+        i++;
+        setTimeout(typeIntro, typeSpeed);
+      } else {
+        enterBtn.style.opacity = 1;
+        setTimeout(() => enterSite(), 8000); // auto-enter after 8 seconds
+      }
+    }
+
     function enterSite() {
       document.getElementById("intro").style.display = "none";
       document.getElementById("mainContent").style.display = "block";
     }
+
+    window.onload = typeIntro;
   </script>
 </body>
 </html>
