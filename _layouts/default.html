@@ -120,22 +120,23 @@ title: Home
     box-shadow: inset 0 0 12px #00ff00, 0 0 25px #00ff00;
   }
 }
-  25% { opacity: 0.2; }
-  50% { opacity: 0.05; }
-  75% { opacity: 0.2; }
-  100% { opacity: 0.1; }
-}
-
-
-  99% { filter: brightness(2) contrast(2) saturate(3); opacity: 0.2; }
-}
-  25% { opacity: 0.2; }
-  50% { opacity: 0.05; }
-  75% { opacity: 0.2; }
-  100% { opacity: 0.1; }
-}
-    50% { opacity: 1; }
+  100% {
+    box-shadow: inset 0 0 12px #00ff00, 0 0 25px #00ff00;
   }
+}
+}
+  75% { opacity: 0.2; }
+  100% { opacity: 0.1; }
+}
+
+
+}
+  25% { opacity: 0.2; }
+  50% { opacity: 0.05; }
+  75% { opacity: 0.2; }
+  100% { opacity: 0.1; }
+}
+}
 /* Pip-Boy-style HUD corners */
 .hud-corner {
   position: fixed;
@@ -186,7 +187,124 @@ title: Home
   border-top: 1px solid #00ff00;
 }
 
-</style>
+/* Tony Stark-inspired overlays */
+.arc-reactor {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 4px solid rgba(0, 255, 255, 0.5);
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.8), 0 0 60px rgba(0, 255, 255, 0.4);
+  z-index: 0;
+  opacity: 0.05;
+  animation: pulseReactor 2s infinite ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes pulseReactor {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 0.05; }
+  50% { transform: translate(-50%, -50%) scale(1.05); opacity: 0.08; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 0.05; }
+}
+
+.hud-lines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(to bottom, rgba(0, 255, 0, 0.02) 0px, rgba(0, 255, 0, 0.02) 1px, transparent 1px, transparent 4px);
+  opacity: 0.07;
+  animation: hudScan 3s linear infinite;
+}
+
+@keyframes hudScan {
+  0% { background-position-y: 0; }
+  100% { background-position-y: 100%; }
+}
+
+/* Tony Stark-style HUD grid + rings */
+.hud-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hud-grid {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0, 255, 0, 0.03) 1px, transparent 1px),
+              linear-gradient(to right, rgba(0, 255, 0, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.08;
+}
+
+.hud-rings {
+  position: absolute;
+  top: 10%;
+  right: 5%;
+  width: 120px;
+  height: 120px;
+  border: 2px dashed #00ff00;
+  border-radius: 50%;
+  animation: rotateRing 6s linear infinite;
+  opacity: 0.15;
+}
+
+@keyframes rotateRing {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Dynamic corner elements */
+.corner-indicator {
+  position: fixed;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #00ff00;
+  box-shadow: 0 0 10px #00ff00;
+  animation: pulseCorner 2s infinite ease-in-out;
+  z-index: 3;
+}
+.corner-top-left {
+  top: 5px;
+  left: 5px;
+}
+.corner-top-right {
+  top: 5px;
+  right: 5px;
+}
+.corner-bottom-left {
+  bottom: 5px;
+  left: 5px;
+}
+.corner-bottom-right {
+  bottom: 5px;
+  right: 5px;
+}
+
+@keyframes pulseCorner {
+  0% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.7; }
+}
+  to { transform: rotate(360deg); }
+}
+  100% { background-position-y: 100%; }
+}
+
+
 </head>
 <body>
   <div id="terminal-stream"></div>
@@ -294,7 +412,39 @@ title: Home
     }
 
     window.onload = typeIntro;
-  </script>
+  // Add hover effects to corner indicators
+const corners = document.querySelectorAll('.corner-indicator');
+corners.forEach(corner => {
+  corner.addEventListener('mouseenter', () => {
+    corner.style.boxShadow = '0 0 20px #00ffff';
+    corner.style.transform = 'scale(1.5)';
+
+    // Create a funny log message
+    const prankMsg = document.createElement('div');
+    prankMsg.textContent = `[SYS] Intruder detected on quadrant (${corner.classList[1]})!`;
+    prankMsg.style.color = '#ff00ff';
+    prankMsg.style.opacity = 1;
+    prankMsg.style.transition = 'opacity 1s ease-out';
+    terminalEl.appendChild(prankMsg);
+    setTimeout(() => {
+      prankMsg.style.opacity = 0;
+      setTimeout(() => {
+        terminalEl.removeChild(prankMsg);
+      }, 1000);
+    }, 3000);
+  });
+
+  corner.addEventListener('mouseleave', () => {
+    corner.style.boxShadow = '0 0 10px #00ff00';
+    corner.style.transform = 'scale(1)';
+  });
+});
+  corner.addEventListener('mouseleave', () => {
+    corner.style.boxShadow = '0 0 10px #00ff00';
+    corner.style.transform = 'scale(1)';
+  });
+});
+</script>
   <div class="hud-corner hud-top-left"></div>
   <div class="hud-corner hud-top-right"></div>
   <div class="hud-corner hud-bottom-left"></div>
@@ -305,6 +455,19 @@ title: Home
     <span>Signal: ▓▓▓▓░</span>
     <span>Location: NC-SERVER-01</span>
   </div>
+
+  <div class="arc-reactor"></div>
+  <div class="hud-lines"></div>
+
+  <div class="hud-overlay">
+    <div class="hud-grid"></div>
+    <div class="hud-rings"></div>
+  </div>
+
+  <div class="corner-indicator corner-top-left"></div>
+  <div class="corner-indicator corner-top-right"></div>
+  <div class="corner-indicator corner-bottom-left"></div>
+  <div class="corner-indicator corner-bottom-right"></div>
 
 </body>
 </html>
