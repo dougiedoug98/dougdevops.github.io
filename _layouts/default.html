@@ -17,150 +17,127 @@ title: Home
       background: black;
       color: #00ff00;
       font-family: 'Courier New', Courier, monospace;
-      overflow-x: hidden;
+      overflow: hidden;
     }
 
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: -3;
-    }
-
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.8);
-      padding: 1rem;
-      text-align: center;
-      z-index: 11;
-    }
-
-    nav a {
-      margin: 0 1rem;
-      color: #00ff00;
-      text-decoration: none;
-    }
-
-    .content {
-      position: relative;
-      z-index: 10;
-      padding: 6rem 2rem 2rem 2rem;
-      background: rgba(0, 0, 0, 0.75);
-      max-width: 800px;
-      margin: 5rem auto;
-      border-radius: 10px;
-      box-shadow: 0 0 15px #00ff00;
-    }
-
-    h1, h2, p, a {
-      color: #00ff00;
-    }
-
-    #terminal {
+    #terminal-stream {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
       padding: 2rem;
-      white-space: pre-wrap;
       font-size: 14px;
       color: #00ff00;
-      z-index: -2;
+      z-index: 0;
       overflow: hidden;
-      opacity: 0.35;
+      white-space: pre-line;
       pointer-events: none;
+      opacity: 0.3;
+    }
+
+    .intro-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.85);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .intro-screen h1 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: #00ff00;
+    }
+
+    .enter-btn {
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      background: transparent;
+      color: #00ff00;
+      border: 2px solid #00ff00;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .enter-btn:hover {
+      background: #00ff00;
+      color: black;
+    }
+
+    .site-content {
+      display: none;
+    }
+
+    nav, .content {
+      z-index: 2;
     }
   </style>
 </head>
 <body>
-  <canvas id="matrix"></canvas>
-  <div id="terminal"></div>
+  <div id="terminal-stream"></div>
 
-  <nav>
-    <a href="/">Home</a>
-    <a href="/about">About</a>
-    <a href="/projects">Projects</a>
-    <a href="/resume">Resume</a>
-    <a href="/contact">Contact</a>
-  </nav>
+  <div class="intro-screen" id="intro">
+    <h1>Establishing secure terminal session...</h1>
+    <button class="enter-btn" onclick="enterSite()">Enter Doug's Domain</button>
+  </div>
 
-  <div class="content">
-    <h1>Doug DevOps</h1>
-    <h2>Network / Systems Administrator & Cybersecurity Enthusiast</h2>
-    <p>Welcome to my portfolio and resume hub.</p>
-    <p>Explore my <a href="/projects">projects</a>, <a href="/resume">resume</a>, and learn more <a href="/about">about me</a>.</p>
+  <div class="site-content" id="mainContent">
+    <nav>
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/projects">Projects</a>
+      <a href="/resume">Resume</a>
+      <a href="/contact">Contact</a>
+    </nav>
+
+    <div class="content">
+      <h1>Doug DevOps</h1>
+      <h2>Systems & Cybersecurity Engineer</h2>
+      <p>Welcome to my portfolio and resume hub.</p>
+      <p>Explore my <a href="/projects">projects</a>, <a href="/resume">resume</a>, and learn more <a href="/about">about me</a>.</p>
+    </div>
   </div>
 
   <script>
-    // Matrix Background
-    const canvas = document.getElementById("matrix");
-    const ctx = canvas.getContext("2d");
-    canvas.height = window.innerHeight;
-    canvas.width = window.innerWidth;
-    const letters = Array(256).join("1").split("");
-    let drops = [];
-    for (let i = 0; i < canvas.width / 10; i++) {
-      drops[i] = 1;
-    }
-    function drawMatrix() {
-      ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = "#0F0";
-      ctx.font = "12pt monospace";
-      for (let i = 0; i < drops.length; i++) {
-        const text = String.fromCharCode(33 + Math.random() * 94);
-        ctx.fillText(text, i * 10, drops[i] * 15);
-        if (drops[i] * 15 > canvas.height && Math.random() > 0.975) {
-          drops[i] = 0;
-        }
-        drops[i]++;
-      }
-    }
-    setInterval(drawMatrix, 33);
-    window.addEventListener("resize", () => {
-      canvas.height = window.innerHeight;
-      canvas.width = window.innerWidth;
-    });
-
-    // Terminal Typing Background
-    const terminal = document.getElementById("terminal");
-    const lines = [
-      "> ssh root@10.0.0.14",
-      "> pulling config from git...",
-      "> running playbook: patch_servers.yml",
-      "> docker ps -a",
-      "> systemctl restart nginx",
-      "> ping 192.168.1.1 -t",
-      "> nmap -sV 192.168.0.0/24",
-      "> sudo apt update && sudo apt upgrade",
-      "> tail -f /var/log/syslog",
-      "> launching container: zabbix_agent_01",
-      "[INFO] Jenkins job triggered: DeployInfra",
-      "[OK] Wazuh Agent Heartbeat Verified"
+    const terminalEl = document.getElementById("terminal-stream");
+    const logLines = [
+      "[INFO] Connecting to remote host...",
+      "[OK] SSH session established with 10.0.0.14",
+      "[INFO] Fetching latest container stats...",
+      "[INFO] Docker container zabbix_agent_01: running",
+      "[INFO] Git repo cloned: /infra/ansible/playbooks",
+      "[RUN] playbook: deploy_patch.yaml",
+      "[WARN] Service nginx not responding, attempting restart...",
+      "[OK] nginx restarted successfully",
+      "[INFO] Monitoring agent heartbeat received",
+      "[LOG] Syslog: sudo apt update && sudo apt upgrade",
+      "[INFO] Port scan initiated: nmap -sV 192.168.1.0/24",
+      "[OK] Jenkins job completed: nightly-reboot"
     ];
-    let terminalContent = "";
-    let currentLine = 0;
-    function typeLine() {
-      const line = lines[currentLine % lines.length];
-      let charIndex = 0;
-      const typer = setInterval(() => {
-        if (charIndex < line.length) {
-          terminalContent += line.charAt(charIndex);
-          terminal.innerText = terminalContent;
-          charIndex++;
-        } else {
-          terminalContent += "\n";
-          currentLine++;
-          clearInterval(typer);
-          setTimeout(typeLine, 600);
-        }
-        terminal.scrollTop = terminal.scrollHeight;
-      }, 50);
+
+    let stream = "";
+    function pushLogLine() {
+      const line = logLines[Math.floor(Math.random() * logLines.length)];
+      stream += line + "\n";
+      const lines = stream.split("\n");
+      if (lines.length > 30) lines.shift();
+      terminalEl.innerText = lines.join("\n");
     }
-    typeLine();
+    setInterval(pushLogLine, 500);
+
+    function enterSite() {
+      document.getElementById("intro").style.display = "none";
+      document.getElementById("mainContent").style.display = "block";
+    }
   </script>
 </body>
 </html>
