@@ -130,10 +130,25 @@ title: Home
   border: 10px solid rgba(0, 255, 0, 0.05);
   z-index: 2;
   pointer-events: none;
+  border-radius: 25px;
+  animation: frameScanlines 3s infinite;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 255, 0, 0.015) 0px,
+    rgba(0, 255, 0, 0.015) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+  background-size: 100% 4px;
+  background-repeat: repeat;
 }
 
 .flicker {
   animation: flickerAnimation 3s infinite;
+}
+@keyframes frameScanlines {
+  0% { background-position-y: 0; }
+  100% { background-position-y: 100%; }
 }
 </style>
 </head>
