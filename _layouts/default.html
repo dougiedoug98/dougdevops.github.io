@@ -102,19 +102,12 @@ title: Home
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: repeating-linear-gradient(
-    0deg,
-    rgba(255, 255, 255, 0.03) 0px,
-    rgba(255, 255, 255, 0.03) 1px,
-    transparent 1px,
-    transparent 2px
-  ),
-  radial-gradient(circle at center, rgba(255, 255, 255, 0.025), rgba(0, 0, 0, 0.3));
-  background-blend-mode: screen;
+  background: url('https://media.giphy.com/media/oEI9uBYSzLpBK/giphy.gif') center center / cover no-repeat;
   z-index: 1;
   pointer-events: none;
-  animation: screenFlicker 0.12s infinite alternate;
-  opacity: 0.15;
+  opacity: 0.08;
+  mix-blend-mode: screen;
+  animation: screenFlicker 0.1s infinite;
 }
 
   @keyframes screenFlicker {
