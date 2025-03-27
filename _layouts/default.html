@@ -35,6 +35,8 @@ title: Home
       pointer-events: none;
       opacity: 0.5;
       background: rgba(0, 0, 0, 0.65);
+      font-family: 'Courier New', Courier, monospace;
+      line-height: 1.5;
     }
 
     .intro-screen {
@@ -151,6 +153,28 @@ title: Home
           siteContent.style.display = 'block';
           if (terminal) terminal.style.opacity = 0.2;
         });
+      }
+
+      // Terminal simulation
+      const messages = [
+        "[OK] SSH session established with 10.0.0.14",
+        "[RUN] playbook: deploy_patch.yaml",
+        "[INFO] Git repo cloned: /infra/ansible/playbooks",
+        "[INFO] Monitoring agent heartbeat received",
+        "[INFO] Docker container zabbix_agent_01: running",
+        "[WARN] High memory usage detected on node-01",
+        "[LOG] Syslog: sudo apt update && sudo apt upgrade",
+        "[ERROR] Permissions denied writing to /etc/shadow",
+        "[INFO] Connection established with 192.168.1.10"
+      ];
+
+      if (terminal) {
+        let index = 0;
+        setInterval(() => {
+          terminal.textContent += messages[index] + '\n';
+          terminal.scrollTop = terminal.scrollHeight; // Auto-scroll
+          index = (index + 1) % messages.length;
+        }, 2000); // Display a new message every 2 seconds
       }
     });
   </script>
