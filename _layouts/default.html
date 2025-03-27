@@ -70,7 +70,7 @@ title: Home
       border-radius: 5px;
       cursor: pointer;
       transition: background 0.3s, color 0.3s;
-      opacity: 0;
+      opacity: 1; /* Ensure the button is visible */
       transition: opacity 1s ease-in-out;
     }
 
@@ -174,10 +174,7 @@ title: Home
         body.style.overflow = 'auto'; // Enable scrolling for main content
       };
 
-      // Automatically dismiss intro after 3 seconds
-      setTimeout(dismissIntro, 3000);
-
-      // Allow user to dismiss intro manually
+      // Remove auto-dismiss functionality
       if (enterBtn) {
         enterBtn.addEventListener('click', dismissIntro);
       }

@@ -13,7 +13,7 @@ Relive the classic game right in your browser! Use the controls below to start p
 <script>
   document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('jsdos-container');
-    Dos(container).run("https://js-dos.com/DOOM/doom.jsdos");
+    Dos(container).run("https://js-dos.com/DOOM/doom.jsdos"); // Use external URL
   });
 </script>
 
