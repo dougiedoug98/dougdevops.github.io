@@ -110,11 +110,13 @@ title: Home
   </style>
 </head>
 <body>
+  {% if page.title == "Home" %}
   <div id="terminal-stream"></div>
   <div class="intro-screen">
     <h1 class="flicker">Establishing secure terminal session...</h1>
     <button class="enter-btn">Enter Doug's Domain</button>
   </div>
+  {% endif %}
   <div class="navbar">
     <a href="/">Home</a>
     <a href="/projects">Projects</a>
@@ -137,7 +139,7 @@ title: Home
       const body = document.body;
 
       // Check sessionStorage to see if the intro screen has already been dismissed
-      if (sessionStorage.getItem('introDismissed')) {
+      if (sessionStorage.getItem('introDismissed') && introScreen) {
         introScreen.classList.add('hidden'); // Hide intro screen
         navbar.classList.add('visible'); // Show navbar
         if (siteContent) siteContent.style.display = 'block';
@@ -146,7 +148,7 @@ title: Home
       }
 
       const dismissIntro = () => {
-        introScreen.classList.add('hidden'); // Hide intro screen
+        if (introScreen) introScreen.classList.add('hidden'); // Hide intro screen
         navbar.classList.add('visible'); // Show navbar
         if (siteContent) siteContent.style.display = 'block';
         if (terminal) terminal.style.display = 'none';
@@ -174,7 +176,7 @@ title: Home
       if (terminal) {
         let index = 0;
         setInterval(() => {
-          if (!introScreen.classList.contains('hidden')) { // Only show messages during intro
+          if (introScreen && !introScreen.classList.contains('hidden')) { // Only show messages during intro
             terminal.textContent += messages[index] + '\n';
             terminal.scrollTop = terminal.scrollHeight; // Auto-scroll
             index = (index + 1) % messages.length;
