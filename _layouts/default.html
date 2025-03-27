@@ -160,26 +160,18 @@ title: Home
 
     /* Navigation bar styles */
     .navbar {
-      display: none; /* Hide navbar initially */
+      display: flex;
       justify-content: center;
-      background: rgba(0, 0, 0, 0.8);
+      background: black;
       padding: 1rem;
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 5;
-      border-bottom: 2px solid #00ff00;
-    }
-
-    .navbar.visible {
-      display: flex; /* Show navbar after intro */
+      border-bottom: 1px solid #00ff00;
     }
 
     .navbar a {
       color: #00ff00;
       text-decoration: none;
       margin: 0 1rem;
-      font-size: 1.2rem;
+      font-size: 1rem;
       transition: color 0.3s;
     }
 
@@ -187,11 +179,53 @@ title: Home
       color: black;
       background: #00ff00;
       padding: 0.2rem 0.5rem;
-      border-radius: 5px;
+      border-radius: 3px;
     }
 
     .content-wrapper {
-      margin-top: 5rem; /* Add space for the navbar */
+      padding: 2rem;
+      overflow: auto;
+      height: calc(100% - 3rem); /* Adjust for navbar height */
+    }
+
+    .terminal-border {
+      border: 1px solid #00ff00;
+      padding: 1rem;
+      margin: 1rem auto;
+      max-width: 800px;
+      background: black;
+    }
+
+    h1, h2, p {
+      margin: 0.5rem 0;
+    }
+
+    a.tech-button {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      margin: 0.5rem;
+      font-size: 1rem;
+      color: #00ff00;
+      text-decoration: none;
+      border: 1px solid #00ff00;
+      border-radius: 3px;
+      background: transparent;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    a.tech-button:hover {
+      background: #00ff00;
+      color: black;
+    }
+
+    .flicker {
+      animation: flickerAnimation 1.5s infinite;
+    }
+
+    @keyframes flickerAnimation {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.8; }
+      75% { opacity: 0.9; }
     }
   </style>
 </head>
@@ -208,8 +242,10 @@ title: Home
     <a href="/about">About</a>
     <a href="/doom">Play Doom</a>
   </div>
-  <div class="site-content content-wrapper">
-    {{ content }}
+  <div class="content-wrapper">
+    <div class="terminal-border">
+      {{ content }}
+    </div>
   </div>
   <script>
     document.addEventListener('DOMContentLoaded', () => {

@@ -5,9 +5,11 @@ title: About
 
 # About Me
 
+```
 Hey, I'm Douglas — a systems analyst and lifelong tech enthusiast with over a decade of hands-on experience building home servers, automating processes, and supporting enterprise networks.
 
 I specialize in managing IT infrastructure, implementing cybersecurity standards, and optimizing networking environments. Below is a summary of my professional accomplishments and expertise:
+```
 
 ---
 
