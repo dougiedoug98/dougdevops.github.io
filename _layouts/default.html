@@ -20,6 +20,25 @@ title: Home
       overflow: hidden;
     }
 
+    .intro-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: black;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 4;
+      text-align: center;
+    }
+
+    .intro-screen.hidden {
+      display: none; /* Hide intro screen */
+    }
+
     .navbar {
       display: flex;
       justify-content: center;
@@ -91,6 +110,11 @@ title: Home
   </style>
 </head>
 <body>
+  <div id="terminal-stream"></div>
+  <div class="intro-screen">
+    <h1 class="flicker">Establishing secure terminal session...</h1>
+    <button class="enter-btn">Enter Doug's Domain</button>
+  </div>
   <div class="navbar">
     <a href="/">Home</a>
     <a href="/projects">Projects</a>
@@ -103,5 +127,61 @@ title: Home
       {{ content }}
     </div>
   </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const introScreen = document.querySelector('.intro-screen');
+      const enterBtn = document.querySelector('.enter-btn');
+      const navbar = document.querySelector('.navbar');
+      const siteContent = document.querySelector('.site-content');
+      const terminal = document.getElementById('terminal-stream');
+      const body = document.body;
+
+      // Check sessionStorage to see if the intro screen has already been dismissed
+      if (sessionStorage.getItem('introDismissed')) {
+        introScreen.classList.add('hidden'); // Hide intro screen
+        navbar.classList.add('visible'); // Show navbar
+        if (siteContent) siteContent.style.display = 'block';
+        if (terminal) terminal.style.display = 'none';
+        body.style.overflow = 'auto';
+      }
+
+      const dismissIntro = () => {
+        introScreen.classList.add('hidden'); // Hide intro screen
+        navbar.classList.add('visible'); // Show navbar
+        if (siteContent) siteContent.style.display = 'block';
+        if (terminal) terminal.style.display = 'none';
+        body.style.overflow = 'auto';
+        sessionStorage.setItem('introDismissed', 'true'); // Store flag in sessionStorage
+      };
+
+      if (enterBtn) {
+        enterBtn.addEventListener('click', dismissIntro);
+      }
+
+      // Terminal simulation
+      const messages = [
+        "[OK] SSH session established with 10.0.0.14",
+        "[RUN] playbook: deploy_patch.yaml",
+        "[INFO] Git repo cloned: /infra/ansible/playbooks",
+        "[INFO] Monitoring agent heartbeat received",
+        "[INFO] Docker container zabbix_agent_01: running",
+        "[WARN] High memory usage detected on node-01",
+        "[LOG] Syslog: sudo apt update && sudo apt upgrade",
+        "[ERROR] Permissions denied writing to /etc/shadow",
+        "[INFO] Connection established with 192.168.1.10"
+      ];
+
+      if (terminal) {
+        let index = 0;
+        setInterval(() => {
+          if (!introScreen.classList.contains('hidden')) { // Only show messages during intro
+            terminal.textContent += messages[index] + '\n';
+            terminal.scrollTop = terminal.scrollHeight; // Auto-scroll
+            index = (index + 1) % messages.length;
+          }
+        }, 2000); // Display a new message every 2 seconds
+      }
+    });
+  </script>
 </body>
 </html>
