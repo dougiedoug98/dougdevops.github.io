@@ -142,6 +142,7 @@ title: Home
       const enterBtn = document.querySelector('.enter-btn');
       const siteContent = document.querySelector('.site-content');
       const terminal = document.getElementById('terminal-stream');
+      const body = document.body;
 
       if (intro && enterBtn && siteContent) {
         setTimeout(() => {
@@ -151,7 +152,8 @@ title: Home
         enterBtn.addEventListener('click', () => {
           intro.style.display = 'none';
           siteContent.style.display = 'block';
-          if (terminal) terminal.style.opacity = 0.2;
+          if (terminal) terminal.style.display = 'none'; // Hide terminal stream
+          body.style.overflow = 'auto'; // Enable scrolling for main content
         });
       }
 
