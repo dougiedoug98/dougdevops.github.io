@@ -13,61 +13,61 @@ I specialize in managing IT infrastructure, implementing cybersecurity standards
 
 ## 🏗️ Infrastructure Management
 - Managed local VMs on VMware ESXi with vSphere, running on Dell VxRail systems.  
-  ![VMware Logo](https://www.vectorlogo.zone/logos/vmware/vmware-ar21.svg)  
-  ![Dell VxRail](https://upload.wikimedia.org/wikipedia/commons/4/48/Dell_Logo.svg)
+  <img src="https://www.vectorlogo.zone/logos/vmware/vmware-ar21.svg" alt="VMware Logo" style="height: 50px;">  
+  <img src="https://upload.wikimedia.org/wikipedia/commons/4/48/Dell_Logo.svg" alt="Dell VxRail" style="height: 50px;">
 - Implemented disaster recovery solutions using **Zerto**.  
-  ![Zerto Logo](https://www.zerto.com/wp-content/uploads/2019/10/zerto-logo.svg)
+  <img src="https://www.zerto.com/wp-content/uploads/2019/10/zerto-logo.svg" alt="Zerto Logo" style="height: 50px;">
 - Managed file-level backups via **CrashPlan**.  
-  ![CrashPlan Logo](https://www.crashplan.com/assets/img/brand/crashplan-logo.svg)
+  <img src="https://www.crashplan.com/assets/img/brand/crashplan-logo.svg" alt="CrashPlan Logo" style="height: 50px;">
 - Oversaw local domain controllers, including **ADDS**, **LDAP**, **SSO**, **DNS**, and **DHCP**.
 
 ---
 
 ## 🔐 Cybersecurity & Compliance
 - Supported **Fortigate 200E Firewall** policies, BGP connections, and more.  
-  ![Fortinet Logo](https://www.fortinet.com/etc.clientlibs/fortinet/clientlibs/clientlib-base/resources/img/logo.svg)
+  <img src="https://www.fortinet.com/etc.clientlibs/fortinet/clientlibs/clientlib-base/resources/img/logo.svg" alt="Fortinet Logo" style="height: 50px;">
 - Migrated to **Palo Alto PA-1410 Firewalls** and implemented **Prisma Access VPN**.  
-  ![Palo Alto Logo](https://www.paloaltonetworks.com/etc.clientlibs/pan/clientlibs/clientlib-base/resources/images/logo.svg)
+  <img src="https://www.paloaltonetworks.com/etc.clientlibs/pan/clientlibs/clientlib-base/resources/images/logo.svg" alt="Palo Alto Logo" style="height: 50px;">
 - Complied with **ISO27001 Standards** and **GDPR Guidelines**.  
-  ![ISO27001 Logo](https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/ISO_Logo.svg/512px-ISO_Logo.svg.png)  
-  ![GDPR Logo](https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/GDPR-logo.svg/512px-GDPR-logo.svg.png)
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/77/ISO_Logo.svg/512px-ISO_Logo.svg.png" alt="ISO27001 Logo" style="height: 50px;">  
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/GDPR-logo.svg/512px-GDPR-logo.svg.png" alt="GDPR Logo" style="height: 50px;">
 - Addressed vulnerabilities identified by **Nessus** audits in collaboration with stakeholders.  
-  ![Nessus Logo](https://www.tenable.com/sites/drupal.dmz.tenablesecurity.com/files/images/tenable-logo.svg)
+  <img src="https://www.tenable.com/sites/drupal.dmz.tenablesecurity.com/files/images/tenable-logo.svg" alt="Nessus Logo" style="height: 50px;">
 
 ---
 
 ## 🌐 Networking & Segmentation
 - Led IT/OT segmentation and VLAN segmentation projects.
 - Refreshed networking equipment, replacing old Cisco gear with modern solutions.  
-  ![Cisco Logo](https://www.cisco.com/c/dam/en_us/about/ac46/ac20/ac19/images/logo_cisco_blue.svg)
+  <img src="https://www.cisco.com/c/dam/en_us/about/ac46/ac20/ac19/images/logo_cisco_blue.svg" alt="Cisco Logo" style="height: 50px;">
 - Migrated from **Unifi APs** and switches to **Cisco technology**.  
-  ![Unifi Logo](https://assets.ui.com/logo/logo.svg)
+  <img src="https://assets.ui.com/logo/logo.svg" alt="Unifi Logo" style="height: 50px;">
 
 ---
 
 ## 🛠️ Automation & Optimization
 - Automated patch management via **WSUS** and deployment with **WDS/MDT**.  
-  ![WSUS Logo](https://upload.wikimedia.org/wikipedia/commons/f/f1/Microsoft_logo.svg)  
-  ![MDT Logo](https://upload.wikimedia.org/wikipedia/commons/f/f1/Microsoft_logo.svg)
+  <img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Microsoft_logo.svg" alt="WSUS Logo" style="height: 50px;">  
+  <img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Microsoft_logo.svg" alt="MDT Logo" style="height: 50px;">
 - Utilized **PowerShell scripting** to solve various IT challenges.  
-  ![PowerShell Logo](https://docs.microsoft.com/en-us/media/logos/logo-ms-social.png)
+  <img src="https://docs.microsoft.com/en-us/media/logos/logo-ms-social.png" alt="PowerShell Logo" style="height: 50px;">
 - Created documentation on **Confluence** for networking, backups, and patch management.  
-  ![Confluence Logo](https://wac-cdn.atlassian.com/dam/jcr:d4001e3e-8bc0-4fef-80a7-51763c86b4bb/Confluence-blue.svg)
+  <img src="https://wac-cdn.atlassian.com/dam/jcr:d4001e3e-8bc0-4fef-80a7-51763c86b4bb/Confluence-blue.svg" alt="Confluence Logo" style="height: 50px;">
 
 ---
 
 ## 🏭 Manufacturing & Engineering Support
 - Supported local SAP ERP system and manufacturing machinery (e.g., Modula Vertical Storage, CNC Machines, Trumpf Laser).  
-  ![SAP Logo](https://upload.wikimedia.org/wikipedia/commons/5/59/SAP_2011_logo.svg)  
-  ![Trumpf Logo](https://upload.wikimedia.org/wikipedia/commons/5/5f/TRUMPF_logo.svg)
+  <img src="https://upload.wikimedia.org/wikipedia/commons/5/59/SAP_2011_logo.svg" alt="SAP Logo" style="height: 50px;">  
+  <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/TRUMPF_logo.svg" alt="Trumpf Logo" style="height: 50px;">
 - Diagnosed and resolved customer VPN issues for the Project Engineering Team.
 
 ---
 
 ## 🌍 Global IT Projects
 - Migrated 300+ employees to **Intune management** and **O365 services**.  
-  ![Intune Logo](https://learn.microsoft.com/en-us/media/logos/logo-ms-social.png)  
-  ![O365 Logo](https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_Office_365_logo.svg)
+  <img src="https://learn.microsoft.com/en-us/media/logos/logo-ms-social.png" alt="Intune Logo" style="height: 50px;">  
+  <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_Office_365_logo.svg" alt="O365 Logo" style="height: 50px;">
 - Implemented **Palo Alto SD-WAN** and **VPSX Print Management Systems**.
 - Collaborated with engineering departments and vendors to meet project criteria and budget constraints.
 
@@ -75,7 +75,7 @@ I specialize in managing IT infrastructure, implementing cybersecurity standards
 
 ## 📚 Training & Helpdesk
 - Assisted in managing **Lansweeper Helpdesk** and training helpdesk staff.  
-  ![Lansweeper Logo](https://www.lansweeper.com/wp-content/uploads/2023/04/Lansweeper-logo-RGB-dark.svg)
+  <img src="https://www.lansweeper.com/wp-content/uploads/2023/04/Lansweeper-logo-RGB-dark.svg" alt="Lansweeper Logo" style="height: 50px;">
 - Created detailed documentation for IT processes and policies.
 
 ---

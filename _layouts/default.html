@@ -160,7 +160,7 @@ title: Home
 
     /* Navigation bar styles */
     .navbar {
-      display: flex;
+      display: none; /* Hide navbar initially */
       justify-content: center;
       background: rgba(0, 0, 0, 0.8);
       padding: 1rem;
@@ -169,6 +169,10 @@ title: Home
       width: 100%;
       z-index: 5;
       border-bottom: 2px solid #00ff00;
+    }
+
+    .navbar.visible {
+      display: flex; /* Show navbar after intro */
     }
 
     .navbar a {
@@ -211,6 +215,7 @@ title: Home
     document.addEventListener('DOMContentLoaded', () => {
       const intro = document.querySelector('.intro-screen');
       const enterBtn = document.querySelector('.enter-btn');
+      const navbar = document.querySelector('.navbar');
       const siteContent = document.querySelector('.site-content');
       const terminal = document.getElementById('terminal-stream');
       const body = document.body;
@@ -218,11 +223,11 @@ title: Home
       const dismissIntro = () => {
         intro.style.display = 'none';
         siteContent.style.display = 'block';
+        navbar.classList.add('visible'); // Show navbar
         if (terminal) terminal.style.display = 'none'; // Hide terminal stream
         body.style.overflow = 'auto'; // Enable scrolling for main content
       };
 
-      // Remove auto-dismiss functionality
       if (enterBtn) {
         enterBtn.addEventListener('click', dismissIntro);
       }
