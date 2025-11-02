@@ -5,6 +5,12 @@ title: Resume
 
 # Resume
 
+<div style="text-align: center; margin-bottom: 2rem;">
+  <a href="https://www.linkedin.com/in/douglas-collins-04a895215/" target="_blank" class="tech-button" style="display: inline-block;">
+    View Full LinkedIn Profile
+  </a>
+</div>
+
 ## 👨‍💼 Professional Experience
 
 **System Analyst**  

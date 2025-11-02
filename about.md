@@ -5,11 +5,11 @@ title: About
 
 # About Me
 
-```
+<div style="background: rgba(0, 255, 0, 0.05); padding: 1rem; border-left: 3px solid #00ff00; margin-bottom: 2rem;">
 Hey, I'm Douglas — a systems analyst and lifelong tech enthusiast with over a decade of hands-on experience building home servers, automating processes, and supporting enterprise networks.
-
+<br><br>
 I specialize in managing IT infrastructure, implementing cybersecurity standards, and optimizing networking environments. Below is a summary of my professional accomplishments and expertise:
-```
+</div>
 
 ---
 
@@ -89,14 +89,16 @@ I specialize in managing IT infrastructure, implementing cybersecurity standards
 
 ---
 
-## 📸 Gallery
-Below are some images representing my work and expertise:
+## 🎯 Let's Connect
 
-![VMware Infrastructure](https://via.placeholder.com/800x400?text=VMware+Infrastructure)  
-![Firewall Management](https://via.placeholder.com/800x400?text=Firewall+Management)  
-![Networking Equipment](https://via.placeholder.com/800x400?text=Networking+Equipment)  
-![Cybersecurity Audit](https://via.placeholder.com/800x400?text=Cybersecurity+Audit)
+Interested in collaboration or have questions about my work? Feel free to reach out!
+
+<div style="text-align: center; margin-top: 2rem;">
+  <a href="https://www.linkedin.com/in/douglas-collins-04a895215/" target="_blank" class="tech-button">Connect on LinkedIn</a>
+</div>
 
 ---
 
-Let’s build something secure, scalable, and badass.
+<div style="text-align: center; font-style: italic; margin-top: 2rem;">
+Let's build something secure, scalable, and badass.
+</div>
