@@ -110,7 +110,10 @@ title: Home
     .content-wrapper {
       padding: 2rem;
       overflow-y: auto;
-      min-height: calc(100vh - 3rem); /* Adjust for navbar height */
+      overflow-x: hidden;
+      min-height: calc(100vh - 3rem);
+      max-width: 100vw;
+      box-sizing: border-box;
     }
 
     .terminal-border {
@@ -118,28 +121,34 @@ title: Home
       padding: 1.5rem;
       margin: 1rem auto;
       max-width: 1200px;
+      width: 100%;
       background: black;
       box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
       word-wrap: break-word;
       overflow-wrap: break-word;
-      overflow-x: auto;
+      overflow-x: hidden;
+      box-sizing: border-box;
     }
 
     .terminal-border * {
-      max-width: 100%;
-      word-wrap: break-word;
-      overflow-wrap: break-word;
-      word-break: break-word;
+      max-width: 100% !important;
+      box-sizing: border-box;
     }
 
     /* Force line breaks for very long words */
     .terminal-border p,
     .terminal-border li,
     .terminal-border div,
-    .terminal-border span {
-      overflow-wrap: break-word;
-      word-wrap: break-word;
+    .terminal-border span,
+    .terminal-border h1,
+    .terminal-border h2,
+    .terminal-border h3 {
+      overflow-wrap: break-word !important;
+      word-wrap: break-word !important;
+      word-break: break-word !important;
       hyphens: auto;
+      max-width: 100% !important;
+      box-sizing: border-box;
     }
 
     h1, h2, h3, p {
