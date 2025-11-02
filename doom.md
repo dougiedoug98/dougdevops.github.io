@@ -5,35 +5,44 @@ title: Retro Arcade
 
 # Retro Arcade
 
-Take a break and play some classic games right in your browser!
+Take a break and enjoy some classic games!
 
-<div style="width: 100%; max-width: 800px; margin: 2rem auto; border: 2px solid #00ff00; background: black; padding: 1rem;">
-  <h2 style="color: #00ff00; text-align: center; margin-bottom: 1rem;">Space Invaders</h2>
-  <iframe
-    src="https://www.retrogames.cz/play_408-NES.php?language=EN"
-    width="100%"
-    height="600"
-    frameborder="0"
-    allowfullscreen
-    style="display: block; background: black;">
-  </iframe>
+<div style="background: rgba(255, 0, 0, 0.1); border: 1px solid #ff0000; padding: 1rem; margin: 2rem auto; max-width: 800px; text-align: center;">
+  <p style="color: #ff6666; margin: 0;"><strong>Volume Warning:</strong> Please adjust your volume before starting. The game starts with sound enabled.</p>
 </div>
 
-<p style="text-align: center; margin-top: 1rem; color: #00ff00;">
-  <strong>Controls:</strong> Arrow Keys = Move | Space = Fire | Enter = Start
-</p>
-
 <div style="text-align: center; margin-top: 2rem;">
-  <h3 style="color: #00ff00;">More Classic Games</h3>
-  <p style="margin-bottom: 1rem;">Click to play these timeless arcade classics in a new tab:</p>
+  <h2 style="color: #00ff00; margin-bottom: 2rem;">Featured Classic Games</h2>
   <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 1rem;">
-    <a href="https://pacman.com/en/" target="_blank" class="tech-button">Pac-Man</a>
-    <a href="https://tetris.com/play-tetris" target="_blank" class="tech-button">Tetris</a>
-    <a href="https://www.retrogames.cz/play_027-NES.php" target="_blank" class="tech-button">Super Mario Bros</a>
-    <a href="https://www.retrogames.cz/play_386-NES.php" target="_blank" class="tech-button">Galaga</a>
+    <a href="https://pacman.com/en/" target="_blank" class="tech-button">
+      <div style="font-size: 1.2rem; margin-bottom: 0.5rem;">🟡</div>
+      Pac-Man
+    </a>
+    <a href="https://tetris.com/play-tetris" target="_blank" class="tech-button">
+      <div style="font-size: 1.2rem; margin-bottom: 0.5rem;">🟦</div>
+      Tetris
+    </a>
+    <a href="https://www.retrogames.cz/play_027-NES.php" target="_blank" class="tech-button">
+      <div style="font-size: 1.2rem; margin-bottom: 0.5rem;">🍄</div>
+      Super Mario Bros
+    </a>
+    <a href="https://www.retrogames.cz/play_386-NES.php" target="_blank" class="tech-button">
+      <div style="font-size: 1.2rem; margin-bottom: 0.5rem;">🚀</div>
+      Galaga
+    </a>
+    <a href="https://www.retrogames.cz/play_408-NES.php" target="_blank" class="tech-button">
+      <div style="font-size: 1.2rem; margin-bottom: 0.5rem;">👾</div>
+      Space Invaders
+    </a>
+    <a href="https://www.retrogames.cz/play_189-NES.php" target="_blank" class="tech-button">
+      <div style="font-size: 1.2rem; margin-bottom: 0.5rem;">🥊</div>
+      Street Fighter II
+    </a>
   </div>
 </div>
 
-<p style="text-align: center; margin-top: 1.5rem; font-size: 0.9rem;">
-  All games run directly in your browser. No downloads or plugins required!
+<p style="text-align: center; margin-top: 2rem; font-size: 0.9rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+  All games open in a new tab and run directly in your browser. No downloads or plugins required!
+  <br><br>
+  <strong>Tip:</strong> Turn down your volume before clicking a game link.
 </p>
