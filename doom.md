@@ -3,37 +3,23 @@ layout: default
 title: Retro Arcade
 ---
 
-# Retro Arcade
+# Space Invaders
 
-Take a break and play some classic games right here on the page!
+Take a break and defend Earth from the alien invasion! Click the button below to start playing.
 
 <div id="game-selector" style="text-align: center; margin: 2rem auto; max-width: 900px;">
-  <h2 style="color: #00ff00; margin-bottom: 1rem;">Select a Game</h2>
-  <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin-bottom: 2rem;">
-    <button onclick="loadGame('tetris')" class="game-btn">
-      <span style="font-size: 1.2rem;">🟦</span> Tetris
-    </button>
-    <button onclick="loadGame('snake')" class="game-btn">
-      <span style="font-size: 1.2rem;">🐍</span> Snake
-    </button>
-    <button onclick="loadGame('breakout')" class="game-btn">
-      <span style="font-size: 1.2rem;">🧱</span> Breakout
-    </button>
-    <button onclick="loadGame('pong')" class="game-btn">
-      <span style="font-size: 1.2rem;">🏓</span> Pong
-    </button>
-    <button onclick="loadGame('spaceinvaders')" class="game-btn">
-      <span style="font-size: 1.2rem;">👾</span> Space Invaders
-    </button>
-  </div>
+  <button onclick="loadGame()" class="game-btn" style="padding: 1rem 2rem; font-size: 1.2rem;">
+    <span style="font-size: 2rem; display: block; margin-bottom: 0.5rem;">👾</span>
+    Play Space Invaders
+  </button>
 </div>
 
-<div id="game-container" style="width: 100%; max-width: 800px; height: 600px; margin: 0 auto; border: 2px solid #00ff00; background: black; display: none;">
+<div id="game-container" style="width: 100%; max-width: 800px; height: 600px; margin: 2rem auto; border: 2px solid #00ff00; background: black; display: none;">
   <iframe id="game-frame" width="100%" height="100%" frameborder="0" style="display: block;"></iframe>
 </div>
 
 <div id="game-info" style="text-align: center; margin-top: 1rem; display: none;">
-  <p style="color: #00ff00;"><strong>Controls:</strong> <span id="controls-text">Use arrow keys</span></p>
+  <p style="color: #00ff00;"><strong>Controls:</strong> Arrow Keys = Move | Space = Fire</p>
   <button onclick="closeGame()" class="tech-button" style="margin-top: 1rem;">Close Game</button>
 </div>
 
@@ -60,59 +46,62 @@ Take a break and play some classic games right here on the page!
 </style>
 
 <script>
-  const games = {
-    tetris: {
-      url: 'https://www.google.com/logos/2020/july4th20/rc4/july4th20.html?hl=en',
-      controls: 'Arrow Keys = Move/Rotate | Space = Drop'
-    },
-    snake: {
-      url: 'https://www.google.com/fbx?fbx=snake_arcade',
-      controls: 'Arrow Keys = Direction'
-    },
-    breakout: {
-      url: 'https://elgoog.im/breakout/',
-      controls: 'Mouse or Arrow Keys = Move Paddle'
-    },
-    pong: {
-      url: 'https://www.ponggame.org/',
-      controls: 'Mouse = Move Paddle'
-    },
-    spaceinvaders: {
-      url: 'https://freeinvaders.org/',
-      controls: 'Arrow Keys = Move | Space = Fire'
-    }
-  };
+  let gameActive = false;
 
-  function loadGame(gameId) {
-    const game = games[gameId];
+  function loadGame() {
     const gameFrame = document.getElementById('game-frame');
     const gameContainer = document.getElementById('game-container');
     const gameInfo = document.getElementById('game-info');
-    const controlsText = document.getElementById('controls-text');
+    const gameSelector = document.getElementById('game-selector');
 
-    gameFrame.src = game.url;
-    controlsText.textContent = game.controls;
+    gameFrame.src = 'https://freeinvaders.org/';
     gameContainer.style.display = 'block';
     gameInfo.style.display = 'block';
+    gameSelector.style.display = 'none';
+    gameActive = true;
 
     // Scroll to game
     gameContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    // Prevent arrow key scrolling when game is active
+    enableArrowKeyBlock();
   }
 
   function closeGame() {
     const gameFrame = document.getElementById('game-frame');
     const gameContainer = document.getElementById('game-container');
     const gameInfo = document.getElementById('game-info');
+    const gameSelector = document.getElementById('game-selector');
 
     gameFrame.src = '';
     gameContainer.style.display = 'none';
     gameInfo.style.display = 'none';
+    gameSelector.style.display = 'block';
+    gameActive = false;
+
+    // Re-enable arrow key scrolling
+    disableArrowKeyBlock();
 
     // Scroll back to game selector
-    document.getElementById('game-selector').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    gameSelector.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // Prevent arrow keys from scrolling the page
+  function preventArrowScroll(e) {
+    if (gameActive && ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Space'].includes(e.code)) {
+      e.preventDefault();
+    }
+  }
+
+  function enableArrowKeyBlock() {
+    window.addEventListener('keydown', preventArrowScroll);
+  }
+
+  function disableArrowKeyBlock() {
+    window.removeEventListener('keydown', preventArrowScroll);
   }
 </script>
 
 <p style="text-align: center; margin-top: 2rem; font-size: 0.9rem; color: #888;">
-  Click a game above to start playing. All games are embedded and run directly on this page!
+  The classic arcade game is embedded and runs directly on this page. Use arrow keys to move and space to fire!
 </p>
