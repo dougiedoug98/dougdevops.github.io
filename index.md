@@ -11,6 +11,6 @@ title: Home
     <a href="/projects" class="tech-button">Explore Projects</a>
     <a href="/resume" class="tech-button">View Resume</a>
     <a href="/about" class="tech-button">About Me</a>
-    <a href="/doom" class="tech-button">Play Doom</a>
+    <a href="/doom" class="tech-button">Retro Arcade</a>
   </div>
 </div>
