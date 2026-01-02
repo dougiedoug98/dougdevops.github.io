@@ -1,6 +1,7 @@
 ---
 layout: default
 title: About
+description: Learn about Douglas Collins - Systems Analyst with 10+ years of IT infrastructure, cybersecurity, and DevOps experience
 ---
 
 # About Me
@@ -14,14 +15,30 @@ I specialize in managing IT infrastructure, implementing cybersecurity standards
 ---
 
 ## 🏗️ Infrastructure Management
-- Managed local VMs on VMware ESXi with vSphere, running on Dell VxRail systems.  
-  <img src="https://www.vectorlogo.zone/logos/vmware/vmware-ar21.svg" alt="VMware Logo" style="height: 50px;">  
-  <img src="https://upload.wikimedia.org/wikipedia/commons/4/48/Dell_Logo.svg" alt="Dell VxRail" style="height: 50px;">
-- Implemented disaster recovery solutions using **Zerto**.  
-  <img src="https://www.zerto.com/wp-content/uploads/2019/10/zerto-logo.svg" alt="Zerto Logo" style="height: 50px;">
-- Managed file-level backups via **CrashPlan**.  
-  <img src="https://www.crashplan.com/assets/img/brand/crashplan-logo.svg" alt="CrashPlan Logo" style="height: 50px;">
-- Oversaw local domain controllers, including **ADDS**, **LDAP**, **SSO**, **DNS**, and **DHCP**.
+
+<div style="display: grid; gap: 1rem; margin: 1rem 0;">
+  <div style="display: flex; align-items: start; gap: 1rem;">
+    <span style="color: #00ff00; font-size: 1.5rem;">▸</span>
+    <div>
+      <strong>VMware Virtualization:</strong> Managed local VMs on VMware ESXi with vSphere, running on Dell VxRail systems<br>
+      <img src="https://www.vectorlogo.zone/logos/vmware/vmware-ar21.svg" alt="VMware" style="height: 40px; margin-top: 0.5rem;" loading="lazy">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/48/Dell_Logo.svg" alt="Dell" style="height: 40px; margin-top: 0.5rem;" loading="lazy">
+    </div>
+  </div>
+  <div style="display: flex; align-items: start; gap: 1rem;">
+    <span style="color: #00ff00; font-size: 1.5rem;">▸</span>
+    <div>
+      <strong>Disaster Recovery:</strong> Implemented business continuity solutions using Zerto for VM replication<br>
+      <img src="https://www.zerto.com/wp-content/uploads/2019/10/zerto-logo.svg" alt="Zerto" style="height: 40px; margin-top: 0.5rem;" loading="lazy">
+    </div>
+  </div>
+  <div style="display: flex; align-items: start; gap: 1rem;">
+    <span style="color: #00ff00; font-size: 1.5rem;">▸</span>
+    <div>
+      <strong>Directory Services:</strong> Oversaw Active Directory Domain Services (ADDS), LDAP, Single Sign-On (SSO), DNS, and DHCP infrastructure
+    </div>
+  </div>
+</div>
 
 ---
 

@@ -8,369 +8,847 @@ title: Home
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{{ site.title }} - {{ page.title }}</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <!-- Primary Meta Tags -->
+  <title>{{ page.title }} | {{ site.title }} - {{ site.description }}</title>
+  <meta name="title" content="{{ page.title }} | {{ site.title }}" />
+  <meta name="description" content="{{ page.description | default: site.description }}" />
+  <meta name="author" content="{{ site.author }}" />
+  <meta name="keywords" content="DevOps, Cybersecurity, Systems Engineer, IT Infrastructure, VMware, Network Security, PowerShell, Automation, Portfolio" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}" />
+  <meta property="og:title" content="{{ page.title }} | {{ site.title }}" />
+  <meta property="og:description" content="{{ page.description | default: site.description }}" />
+  <meta property="og:image" content="{{ site.url }}/assets/og-image.png" />
+  <meta property="og:site_name" content="{{ site.title }}" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="{{ site.url }}{{ page.url }}" />
+  <meta property="twitter:title" content="{{ page.title }} | {{ site.title }}" />
+  <meta property="twitter:description" content="{{ page.description | default: site.description }}" />
+  <meta property="twitter:image" content="{{ site.url }}/assets/og-image.png" />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#000000" />
+
+  <!-- Preconnect to external domains for performance -->
+  <link rel="preconnect" href="https://www.vectorlogo.zone" crossorigin />
+  <link rel="preconnect" href="https://upload.wikimedia.org" crossorigin />
+
+  <!-- DNS Prefetch -->
+  <link rel="dns-prefetch" href="https://www.vectorlogo.zone" />
+  <link rel="dns-prefetch" href="https://upload.wikimedia.org" />
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "{{ site.author }}",
+    "url": "{{ site.url }}",
+    "jobTitle": "Systems & Cybersecurity Engineer",
+    "description": "{{ site.description }}",
+    "sameAs": [
+      "https://www.linkedin.com/in/douglas-collins-04a895215/"
+    ],
+    "knowsAbout": [
+      "DevOps",
+      "Cybersecurity",
+      "VMware",
+      "Network Security",
+      "PowerShell",
+      "IT Infrastructure",
+      "Automation"
+    ]
+  }
+  </script>
+
   <style>
+    /* CSS Variables for consistent theming */
+    :root {
+      --color-primary: #00ff00;
+      --color-primary-dim: #00cc00;
+      --color-primary-dark: #009900;
+      --color-bg: #000000;
+      --color-bg-elevated: rgba(0, 255, 0, 0.05);
+      --color-border: #00ff00;
+      --color-shadow: rgba(0, 255, 0, 0.3);
+      --color-shadow-strong: rgba(0, 255, 0, 0.5);
+      --color-shadow-intense: rgba(0, 255, 0, 0.8);
+      --font-mono: 'Courier New', Courier, Monaco, monospace;
+      --spacing-xs: 0.25rem;
+      --spacing-sm: 0.5rem;
+      --spacing-md: 1rem;
+      --spacing-lg: 1.5rem;
+      --spacing-xl: 2rem;
+      --border-radius: 5px;
+      --border-radius-sm: 3px;
+      --transition-fast: 0.2s ease;
+      --transition-normal: 0.3s ease;
+      --max-width: 1200px;
+    }
+
+    /* Performance optimization */
+    * {
+      box-sizing: border-box;
+    }
+
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    /* Base styles */
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
     html, body {
       margin: 0;
       padding: 0;
       min-height: 100%;
-      background: black;
-      color: #00ff00;
-      font-family: 'Courier New', Courier, monospace;
+      background: var(--color-bg);
+      color: var(--color-primary);
+      font-family: var(--font-mono);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
+    /* Skip to main content link for accessibility */
+    .skip-to-main {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: var(--color-primary);
+      color: var(--color-bg);
+      padding: var(--spacing-sm) var(--spacing-md);
+      text-decoration: none;
+      z-index: 10000;
+      font-weight: bold;
+    }
+
+    .skip-to-main:focus {
+      top: 0;
+    }
+
+    /* Intro screen */
     .intro-screen {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: black;
+      background: var(--color-bg);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      z-index: 4;
+      z-index: 9999;
       text-align: center;
+      opacity: 1;
+      transition: opacity 0.5s ease;
     }
 
     .intro-screen.hidden {
-      display: none; /* Hide intro screen */
+      opacity: 0;
+      pointer-events: none;
+      display: none;
     }
 
     .enter-btn {
-      padding: 1rem 2rem;
+      padding: var(--spacing-md) var(--spacing-xl);
       font-size: 1.2rem;
-      color: #00ff00;
-      background: black;
-      border: 2px solid #00ff00;
-      border-radius: 5px;
+      color: var(--color-primary);
+      background: var(--color-bg);
+      border: 2px solid var(--color-primary);
+      border-radius: var(--border-radius);
       cursor: pointer;
-      font-family: 'Courier New', Courier, monospace;
-      margin-top: 2rem;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 10px rgba(0, 255, 0, 0.5), inset 0 0 5px rgba(0, 255, 0, 0.3);
+      font-family: var(--font-mono);
+      margin-top: var(--spacing-xl);
+      transition: all var(--transition-normal);
+      box-shadow: 0 0 10px var(--color-shadow-strong), inset 0 0 5px var(--color-shadow);
     }
 
-    .enter-btn:hover {
-      background: #00ff00;
-      color: black;
-      box-shadow: 0 0 20px rgba(0, 255, 0, 0.8), inset 0 0 10px rgba(0, 255, 0, 0.5);
+    .enter-btn:hover,
+    .enter-btn:focus {
+      background: var(--color-primary);
+      color: var(--color-bg);
+      box-shadow: 0 0 20px var(--color-shadow-intense), inset 0 0 10px var(--color-shadow-strong);
       transform: scale(1.05);
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
     }
 
+    .enter-btn:active {
+      transform: scale(0.98);
+    }
+
+    /* Terminal stream background */
     #terminal-stream {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      padding: 2rem;
-      color: #00ff00;
-      font-family: 'Courier New', Courier, monospace;
+      padding: var(--spacing-xl);
+      color: var(--color-primary);
+      font-family: var(--font-mono);
       font-size: 0.9rem;
       overflow: auto;
-      z-index: 3;
-      background: black;
+      z-index: 9998;
+      background: var(--color-bg);
       white-space: pre-wrap;
       word-wrap: break-word;
+      opacity: 0.7;
     }
 
+    /* Navigation */
     .navbar {
       display: flex;
       justify-content: center;
-      background: black;
-      padding: 1rem;
-      border-bottom: 2px solid #00ff00;
-      box-shadow: 0 2px 10px rgba(0, 255, 0, 0.3);
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--spacing-sm);
+      background: var(--color-bg);
+      padding: var(--spacing-md);
+      border-bottom: 2px solid var(--color-border);
+      box-shadow: 0 2px 10px var(--color-shadow);
       position: sticky;
       top: 0;
       z-index: 1000;
+      backdrop-filter: blur(10px);
     }
 
     .navbar a {
-      color: #00ff00;
+      color: var(--color-primary);
       text-decoration: none;
-      margin: 0 1rem;
+      margin: 0 var(--spacing-sm);
       font-size: 1rem;
-      padding: 0.5rem 1rem;
+      padding: var(--spacing-sm) var(--spacing-md);
       border: 1px solid transparent;
-      border-radius: 3px;
-      transition: all 0.3s ease;
+      border-radius: var(--border-radius-sm);
+      transition: all var(--transition-normal);
+      position: relative;
     }
 
-    .navbar a:hover {
-      color: black;
-      background: #00ff00;
-      border-color: #00ff00;
-      box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    .navbar a:hover,
+    .navbar a:focus {
+      color: var(--color-bg);
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+      box-shadow: 0 0 10px var(--color-shadow-strong);
       transform: translateY(-2px);
+      outline: none;
     }
 
+    .navbar a:active {
+      transform: translateY(0);
+    }
+
+    /* Active page indicator */
+    .navbar a.active {
+      border-color: var(--color-primary);
+      background: var(--color-bg-elevated);
+    }
+
+    /* Content wrapper */
     .content-wrapper {
-      padding: 2rem;
+      padding: var(--spacing-xl);
       overflow-y: auto;
       overflow-x: hidden;
       min-height: calc(100vh - 3rem);
       max-width: 100vw;
-      box-sizing: border-box;
+    }
+
+    /* Main content container */
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
     }
 
     .terminal-border {
-      border: 1px solid #00ff00;
-      padding: 1.5rem;
-      margin: 1rem auto;
-      max-width: 1200px;
+      border: 1px solid var(--color-border);
+      padding: var(--spacing-lg);
+      margin: var(--spacing-md) auto;
+      max-width: var(--max-width);
       width: 100%;
-      background: black;
-      box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+      background: var(--color-bg);
+      box-shadow: 0 0 10px var(--color-shadow);
       word-wrap: break-word;
       overflow-wrap: break-word;
       overflow-x: hidden;
-      box-sizing: border-box;
+      border-radius: var(--border-radius);
     }
 
     .terminal-border * {
-      max-width: 100% !important;
-      box-sizing: border-box;
+      max-width: 100%;
     }
 
-    /* Force line breaks for very long words */
     .terminal-border p,
     .terminal-border li,
     .terminal-border div,
-    .terminal-border span,
-    .terminal-border h1,
-    .terminal-border h2,
-    .terminal-border h3 {
-      overflow-wrap: break-word !important;
-      word-wrap: break-word !important;
-      word-break: break-word !important;
+    .terminal-border span {
+      overflow-wrap: break-word;
+      word-wrap: break-word;
       hyphens: auto;
-      max-width: 100% !important;
-      box-sizing: border-box;
     }
 
-    h1, h2, h3, p {
-      margin: 0.5rem 0;
-      line-height: 1.6;
+    /* Typography */
+    h1, h2, h3, h4, h5, h6 {
+      margin: var(--spacing-md) 0;
+      line-height: 1.4;
+      font-weight: bold;
     }
 
     h1 {
-      font-size: 2rem;
-      text-shadow: 0 0 10px #00ff00;
+      font-size: clamp(1.75rem, 5vw, 2.5rem);
+      text-shadow: 0 0 10px var(--color-primary);
+      margin-bottom: var(--spacing-lg);
     }
 
     h2 {
-      font-size: 1.5rem;
-      text-shadow: 0 0 8px #00ff00;
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      text-shadow: 0 0 8px var(--color-primary);
+      margin-top: var(--spacing-xl);
+      margin-bottom: var(--spacing-md);
+    }
+
+    h3 {
+      font-size: clamp(1.2rem, 3vw, 1.5rem);
+      text-shadow: 0 0 5px var(--color-primary);
     }
 
     p, li {
       font-size: 1rem;
       line-height: 1.8;
+      margin: var(--spacing-md) 0;
     }
 
+    /* Images */
     img {
       max-width: 100%;
       height: auto;
       display: inline-block;
-      margin: 0.5rem;
+      margin: var(--spacing-sm);
       vertical-align: middle;
+      border-radius: var(--border-radius-sm);
+      loading: lazy;
     }
 
-    /* Prevent SVG and image overflow */
     svg, img[src*=".svg"] {
       max-width: 100px;
       height: auto;
+      filter: drop-shadow(0 0 3px var(--color-shadow));
     }
 
+    /* Code blocks */
     code {
-      background: rgba(0, 255, 0, 0.1);
+      background: var(--color-bg-elevated);
       padding: 0.2rem 0.4rem;
-      border-radius: 3px;
-      border: 1px solid rgba(0, 255, 0, 0.3);
+      border-radius: var(--border-radius-sm);
+      border: 1px solid var(--color-shadow);
+      font-size: 0.9em;
+      font-family: var(--font-mono);
     }
 
     pre {
-      background: rgba(0, 255, 0, 0.05);
-      padding: 1rem;
-      border-left: 3px solid #00ff00;
+      background: var(--color-bg-elevated);
+      padding: var(--spacing-md);
+      border-left: 3px solid var(--color-primary);
       overflow-x: auto;
       white-space: pre-wrap;
       word-wrap: break-word;
+      border-radius: var(--border-radius-sm);
+      margin: var(--spacing-md) 0;
     }
 
-    a.tech-button {
+    pre code {
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    /* Buttons */
+    a.tech-button,
+    button.tech-button {
       display: inline-block;
-      padding: 0.5rem 1rem;
-      margin: 0.5rem;
+      padding: var(--spacing-sm) var(--spacing-md);
+      margin: var(--spacing-sm);
       font-size: 1rem;
-      color: #00ff00;
+      color: var(--color-primary);
       text-decoration: none;
-      border: 1px solid #00ff00;
-      border-radius: 3px;
+      border: 1px solid var(--color-primary);
+      border-radius: var(--border-radius-sm);
       background: transparent;
-      transition: background 0.3s, color 0.3s;
+      transition: all var(--transition-normal);
+      cursor: pointer;
+      font-family: var(--font-mono);
+      box-shadow: 0 0 5px var(--color-shadow);
     }
 
-    a.tech-button:hover {
-      background: #00ff00;
-      color: black;
+    a.tech-button:hover,
+    a.tech-button:focus,
+    button.tech-button:hover,
+    button.tech-button:focus {
+      background: var(--color-primary);
+      color: var(--color-bg);
+      box-shadow: 0 0 15px var(--color-shadow-strong);
+      transform: translateY(-2px);
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
     }
 
+    a.tech-button:active,
+    button.tech-button:active {
+      transform: translateY(0);
+    }
+
+    /* Animations */
     .flicker {
       animation: flickerAnimation 1.5s infinite;
     }
 
     @keyframes flickerAnimation {
       0%, 100% { opacity: 1; }
-      50% { opacity: 0.8; }
-      75% { opacity: 0.9; }
+      50% { opacity: 0.85; }
+      75% { opacity: 0.95; }
     }
 
-    /* Responsive design for mobile and tablets */
-    @media (max-width: 768px) {
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in {
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+
+    /* Links */
+    a:not(.tech-button):not(.navbar a) {
+      color: var(--color-primary);
+      text-decoration: underline;
+      transition: all var(--transition-fast);
+      text-underline-offset: 2px;
+    }
+
+    a:not(.tech-button):not(.navbar a):hover,
+    a:not(.tech-button):not(.navbar a):focus {
+      color: var(--color-primary-dim);
+      text-shadow: 0 0 5px var(--color-primary);
+      outline: none;
+    }
+
+    /* Lists */
+    ul, ol {
+      padding-left: var(--spacing-xl);
+      margin: var(--spacing-md) 0;
+    }
+
+    li {
+      margin: var(--spacing-sm) 0;
+      line-height: 1.8;
+    }
+
+    li::marker {
+      color: var(--color-primary);
+    }
+
+    /* Horizontal rules */
+    hr {
+      border: none;
+      border-top: 1px solid var(--color-primary);
+      margin: var(--spacing-xl) 0;
+      opacity: 0.5;
+    }
+
+    /* Focus styles for accessibility */
+    *:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
+    }
+
+    /* Selection */
+    ::selection {
+      background: var(--color-primary);
+      color: var(--color-bg);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: var(--spacing-xl);
+      margin-top: var(--spacing-xl);
+      border-top: 1px solid var(--color-border);
+      opacity: 0.7;
+      font-size: 0.9rem;
+    }
+
+    /* Print styles */
+    @media print {
+      .navbar,
+      .intro-screen,
+      #terminal-stream,
+      .skip-to-main {
+        display: none !important;
+      }
+
+      body {
+        background: white;
+        color: black;
+      }
+
       .terminal-border {
-        padding: 1rem;
-        margin: 0.5rem;
+        border: 1px solid black;
+        box-shadow: none;
       }
 
-      h1 {
-        font-size: 1.5rem;
+      a {
+        color: black;
+        text-decoration: underline;
       }
 
-      h2 {
-        font-size: 1.2rem;
+      h1, h2, h3 {
+        text-shadow: none;
+        page-break-after: avoid;
+      }
+
+      a.tech-button {
+        border: 1px solid black;
+        color: black;
+      }
+    }
+
+    /* Responsive design for tablets */
+    @media (max-width: 1024px) {
+      .terminal-border {
+        padding: var(--spacing-md);
+        margin: var(--spacing-sm);
+      }
+
+      .content-wrapper {
+        padding: var(--spacing-md);
+      }
+    }
+
+    /* Responsive design for mobile */
+    @media (max-width: 768px) {
+      :root {
+        --spacing-xl: 1.5rem;
+        --spacing-lg: 1rem;
+      }
+
+      .terminal-border {
+        padding: var(--spacing-md);
+        margin: var(--spacing-xs);
       }
 
       .navbar {
-        flex-wrap: wrap;
-        padding: 0.5rem;
+        padding: var(--spacing-sm);
       }
 
       .navbar a {
-        margin: 0.25rem;
+        margin: var(--spacing-xs);
+        padding: var(--spacing-xs) var(--spacing-sm);
         font-size: 0.9rem;
       }
 
       .content-wrapper {
-        padding: 1rem;
+        padding: var(--spacing-sm);
       }
 
-      a.tech-button {
-        padding: 0.4rem 0.8rem;
+      a.tech-button,
+      button.tech-button {
+        padding: var(--spacing-xs) var(--spacing-sm);
         font-size: 0.9rem;
-        margin: 0.25rem;
+        margin: var(--spacing-xs);
+      }
+
+      ul, ol {
+        padding-left: var(--spacing-md);
+      }
+
+      .enter-btn {
+        font-size: 1rem;
+        padding: var(--spacing-sm) var(--spacing-md);
       }
     }
 
-    /* Improve link styling */
-    a:not(.tech-button):not(.navbar a) {
-      color: #00ff00;
-      text-decoration: underline;
-      transition: color 0.3s;
+    /* Responsive design for small mobile */
+    @media (max-width: 480px) {
+      .navbar {
+        gap: var(--spacing-xs);
+      }
+
+      .navbar a {
+        font-size: 0.85rem;
+        padding: var(--spacing-xs);
+      }
     }
 
-    a:not(.tech-button):not(.navbar a):hover {
-      color: #00cc00;
-      text-shadow: 0 0 5px #00ff00;
+    /* Reduced motion for accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
     }
 
-    /* Better list styling */
-    ul, ol {
-      padding-left: 2rem;
-      margin: 1rem 0;
-    }
+    /* High contrast mode */
+    @media (prefers-contrast: high) {
+      :root {
+        --color-primary: #00ff00;
+        --color-bg: #000000;
+      }
 
-    li {
-      margin: 0.5rem 0;
-    }
-
-    /* Horizontal rule styling */
-    hr {
-      border: none;
-      border-top: 1px solid #00ff00;
-      margin: 2rem 0;
-      opacity: 0.5;
+      .terminal-border {
+        border-width: 2px;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- Skip to main content link for accessibility -->
+  <a href="#main-content" class="skip-to-main">Skip to main content</a>
+
   {% if page.title == "Home" %}
-  <div id="terminal-stream"></div>
-  <div class="intro-screen">
-    <h1 class="flicker">Establishing secure terminal session...</h1>
-    <button class="enter-btn">Enter Doug's Domain</button>
+  <!-- Intro screen terminal simulation -->
+  <div id="terminal-stream" role="presentation" aria-hidden="true"></div>
+  <div class="intro-screen" role="dialog" aria-labelledby="intro-heading" aria-modal="true">
+    <h1 id="intro-heading" class="flicker">Establishing secure terminal session...</h1>
+    <button class="enter-btn" aria-label="Enter Doug's Domain and dismiss intro screen">Enter Doug's Domain</button>
   </div>
   {% endif %}
-  <div class="navbar">
-    <a href="/">Home</a>
-    <a href="/projects">Projects</a>
-    <a href="/resume">Resume</a>
-    <a href="/about">About</a>
-    <a href="/doom">Retro Arcade</a>
-  </div>
+
+  <!-- Main navigation -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <a href="/" {% if page.title == "Home" %}aria-current="page" class="active"{% endif %}>Home</a>
+    <a href="/projects" {% if page.title == "Projects" %}aria-current="page" class="active"{% endif %}>Projects</a>
+    <a href="/resume" {% if page.title == "Resume" %}aria-current="page" class="active"{% endif %}>Resume</a>
+    <a href="/about" {% if page.title == "About" %}aria-current="page" class="active"{% endif %}>About</a>
+    <a href="/contact" {% if page.title == "Contact" %}aria-current="page" class="active"{% endif %}>Contact</a>
+    <a href="/doom" {% if page.title == "Retro Arcade" %}aria-current="page" class="active"{% endif %}>Arcade</a>
+  </nav>
+
+  <!-- Main content -->
   <div class="content-wrapper">
-    <div class="terminal-border">
+    <main id="main-content" class="terminal-border fade-in">
       {{ content }}
-    </div>
+    </main>
   </div>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <p>&copy; {{ 'now' | date: "%Y" }} {{ site.author }}. All rights reserved.</p>
+    <p>Built with Jekyll | Hosted on GitHub Pages</p>
+  </footer>
+
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const introScreen = document.querySelector('.intro-screen');
-      const enterBtn = document.querySelector('.enter-btn');
-      const navbar = document.querySelector('.navbar');
-      const siteContent = document.querySelector('.site-content');
-      const terminal = document.getElementById('terminal-stream');
-      const body = document.body;
+    (function() {
+      'use strict';
 
-      // Check sessionStorage to see if the intro screen has already been dismissed
-      if (sessionStorage.getItem('introDismissed') && introScreen) {
-        introScreen.classList.add('hidden'); // Hide intro screen
-        navbar.classList.add('visible'); // Show navbar
-        if (siteContent) siteContent.style.display = 'block';
-        if (terminal) terminal.style.display = 'none';
-        body.style.overflow = 'auto';
-      }
-
-      const dismissIntro = () => {
-        if (introScreen) introScreen.classList.add('hidden'); // Hide intro screen
-        navbar.classList.add('visible'); // Show navbar
-        if (siteContent) siteContent.style.display = 'block';
-        if (terminal) terminal.style.display = 'none';
-        body.style.overflow = 'auto';
-        sessionStorage.setItem('introDismissed', 'true'); // Store flag in sessionStorage
+      // Utility: Safe session storage
+      const storage = {
+        get: function(key) {
+          try {
+            return sessionStorage.getItem(key);
+          } catch (e) {
+            console.warn('Session storage unavailable:', e);
+            return null;
+          }
+        },
+        set: function(key, value) {
+          try {
+            sessionStorage.setItem(key, value);
+          } catch (e) {
+            console.warn('Session storage unavailable:', e);
+          }
+        }
       };
 
-      if (enterBtn) {
-        enterBtn.addEventListener('click', dismissIntro);
+      // Initialize on DOM ready
+      document.addEventListener('DOMContentLoaded', function() {
+        initIntroScreen();
+        initTerminalSimulation();
+        initAccessibility();
+      });
+
+      // Intro screen functionality
+      function initIntroScreen() {
+        const introScreen = document.querySelector('.intro-screen');
+        const enterBtn = document.querySelector('.enter-btn');
+        const terminal = document.getElementById('terminal-stream');
+        const body = document.body;
+
+        if (!introScreen) return;
+
+        // Check if intro was already dismissed this session
+        if (storage.get('introDismissed') === 'true') {
+          dismissIntro();
+        }
+
+        // Handle enter button click
+        if (enterBtn) {
+          enterBtn.addEventListener('click', dismissIntro);
+
+          // Also allow Enter key to dismiss
+          enterBtn.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              dismissIntro();
+            }
+          });
+        }
+
+        function dismissIntro() {
+          if (introScreen) {
+            introScreen.classList.add('hidden');
+            introScreen.setAttribute('aria-hidden', 'true');
+          }
+          if (terminal) {
+            terminal.style.display = 'none';
+            terminal.setAttribute('aria-hidden', 'true');
+          }
+          body.style.overflow = 'auto';
+          storage.set('introDismissed', 'true');
+
+          // Focus on main content after dismissing
+          const mainContent = document.getElementById('main-content');
+          if (mainContent) {
+            mainContent.focus();
+          }
+        }
       }
 
       // Terminal simulation
-      const messages = [
-        "[OK] SSH session established with 10.0.0.14",
-        "[RUN] playbook: deploy_patch.yaml",
-        "[INFO] Git repo cloned: /infra/ansible/playbooks",
-        "[INFO] Monitoring agent heartbeat received",
-        "[INFO] Docker container zabbix_agent_01: running",
-        "[WARN] High memory usage detected on node-01",
-        "[LOG] Syslog: sudo apt update && sudo apt upgrade",
-        "[ERROR] Permissions denied writing to /etc/shadow",
-        "[INFO] Connection established with 192.168.1.10"
-      ];
+      function initTerminalSimulation() {
+        const terminal = document.getElementById('terminal-stream');
+        const introScreen = document.querySelector('.intro-screen');
 
-      if (terminal) {
+        if (!terminal || !introScreen) return;
+
+        const messages = [
+          "[OK] SSH session established with 10.0.0.14",
+          "[RUN] playbook: deploy_patch.yaml",
+          "[INFO] Git repo cloned: /infra/ansible/playbooks",
+          "[INFO] Monitoring agent heartbeat received",
+          "[INFO] Docker container zabbix_agent_01: running",
+          "[WARN] High memory usage detected on node-01",
+          "[LOG] Syslog: sudo apt update && sudo apt upgrade",
+          "[ERROR] Permissions denied writing to /etc/shadow",
+          "[INFO] Connection established with 192.168.1.10",
+          "[OK] Firewall rule updated: allow port 8443",
+          "[INFO] Certificate renewal: expires in 30 days",
+          "[RUN] backup_script.sh completed successfully"
+        ];
+
         let index = 0;
-        setInterval(() => {
-          if (introScreen && !introScreen.classList.contains('hidden')) { // Only show messages during intro
+        let intervalId = null;
+
+        // Only run if intro is visible
+        if (!introScreen.classList.contains('hidden')) {
+          intervalId = setInterval(function() {
+            if (introScreen.classList.contains('hidden')) {
+              clearInterval(intervalId);
+              return;
+            }
+
             terminal.textContent += messages[index] + '\n';
-            terminal.scrollTop = terminal.scrollHeight; // Auto-scroll
+            terminal.scrollTop = terminal.scrollHeight;
             index = (index + 1) % messages.length;
-          }
-        }, 2000); // Display a new message every 2 seconds
+          }, 2000);
+        }
       }
-    });
+
+      // Accessibility enhancements
+      function initAccessibility() {
+        // Announce page changes for screen readers
+        const pageTitle = document.querySelector('h1');
+        if (pageTitle) {
+          pageTitle.setAttribute('tabindex', '-1');
+        }
+
+        // Add keyboard navigation hints
+        document.addEventListener('keydown', function(e) {
+          // Escape key to dismiss intro (if present)
+          if (e.key === 'Escape') {
+            const introScreen = document.querySelector('.intro-screen');
+            const enterBtn = document.querySelector('.enter-btn');
+            if (introScreen && !introScreen.classList.contains('hidden') && enterBtn) {
+              enterBtn.click();
+            }
+          }
+        });
+
+        // External link indicators
+        const externalLinks = document.querySelectorAll('a[href^="http"]');
+        externalLinks.forEach(function(link) {
+          const href = link.getAttribute('href');
+          if (href && !href.includes(window.location.hostname)) {
+            link.setAttribute('target', '_blank');
+            link.setAttribute('rel', 'noopener noreferrer');
+
+            // Add screen reader text
+            const srText = document.createElement('span');
+            srText.className = 'sr-only';
+            srText.textContent = ' (opens in new tab)';
+            link.appendChild(srText);
+          }
+        });
+      }
+
+      // Performance: Lazy load images
+      if ('loading' in HTMLImageElement.prototype) {
+        const images = document.querySelectorAll('img[loading="lazy"]');
+        images.forEach(function(img) {
+          img.loading = 'lazy';
+        });
+      } else {
+        // Fallback for browsers that don't support lazy loading
+        const script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js';
+        script.async = true;
+        document.body.appendChild(script);
+      }
+    })();
   </script>
+
+  <!-- Visually hidden utility for screen readers -->
+  <style>
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+  </style>
 </body>
 </html>
