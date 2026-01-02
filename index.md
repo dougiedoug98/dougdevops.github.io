@@ -10,7 +10,7 @@ description: Douglas Collins - Systems & Cybersecurity Engineer specializing in 
 
   <div style="max-width: 700px; margin: 2rem auto; padding: 1.5rem; background: rgba(0, 255, 0, 0.05); border-left: 3px solid #00ff00; text-align: left;">
     <p style="margin: 0; line-height: 1.8;">
-      I'm <strong>Douglas Collins</strong>, a DevOps engineer with 10+ years of experience building secure, scalable infrastructure. I specialize in <strong>VMware virtualization</strong>, <strong>network security</strong>, <strong>automation</strong>, and <strong>compliance</strong> (ISO27001, GDPR).
+      I'm <strong>Douglas Collins</strong>, a DevOps engineer with 5+ years of experience building secure, scalable infrastructure. I specialize in <strong>VMware virtualization</strong>, <strong>network security</strong>, <strong>automation</strong>, and <strong>compliance</strong> (ISO27001, GDPR).
     </p>
     <p style="margin-top: 1rem; margin-bottom: 0;">
       Currently working on enterprise infrastructure projects and continuously expanding my homelab to test cutting-edge technologies.
